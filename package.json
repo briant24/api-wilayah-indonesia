@@ -20,5 +20,8 @@
   "homepage": "https://github.com/emsifa/api-wilayah-indonesia#readme",
   "devDependencies": {
     "gh-pages": "^2.1.1"
+  },
+  "dependencies": {
+    "csv-generate": "^4.2.8"
   }
 }
