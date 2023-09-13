@@ -51,7 +51,13 @@ class Generator
                     $this->generateApi("/district/{$district['id']}.json", $district);
 
                     foreach ($villages as $village) {
+                        $tpss = $this->repository->getTpsByVillageId($village['id']);
+                        $this->generateApi("/tpss/{$village['id']}.json", $tpss);
                         $this->generateApi("/village/{$village['id']}.json", $village);
+
+                        foreach ($tpss as $tps) {
+                            $this->generateApi("/tps/{$tps['id']}.json", $tps);
+                        }
                     }
                 }
             }

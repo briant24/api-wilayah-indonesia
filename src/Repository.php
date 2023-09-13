@@ -67,6 +67,13 @@ class Repository
         });
     }
 
+    public function getTpsByVillageId(string $villageId): array
+    {
+        return $this->mapCsv('tps.csv', ['id', 'village_id', 'name'], function ($row) use ($villageId) {
+            return $row[1] == $villageId;
+        });
+    }
+
     protected function mapCsv(string $file, array $map, callable $filter = null): array
     {
         $reader = $this->readCsv($file, $filter);

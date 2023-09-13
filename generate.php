@@ -11,6 +11,7 @@ $repository->cache('provinces.csv');
 $repository->cache('regencies.csv');
 $repository->cache('districts.csv');
 $repository->cache('villages.csv');
+$repository->cache('tps.csv');
 
 $generator = new Generator($repository, __DIR__.'/static/api');
 
