@@ -1,3 +1,8 @@
+API Data Wilayah Kabupaten Kendal beserta TPS
+=============================================
+
+Repository ini di hasil modifikasi dari [https://emsifa.github.io/api-wilayah-indonesia](https://emsifa.github.io/api-wilayah-indonesia)
+
 API Data Wilayah Indonesia
 ==========================
 
