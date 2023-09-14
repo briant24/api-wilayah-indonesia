@@ -20,14 +20,17 @@ const el = new Vue({
     regencies: [],
     districts: [],
     villages: [],
+    tpss: [],
     fetchingProvinces: false,
     fetchingRegencies: false,
     fetchingDistricts: false,
     fetchingVillages: false,
+    fetchingTpss: false,
     provinceId: '',
     regencyId: '',
     districtId: '',
     villageId: '',
+    tpsId: '',
     completed: false,
   },
   watch: {
@@ -47,6 +50,10 @@ const el = new Vue({
       this.fetchVillages()
     },
     villageId() {
+      this.tpsId = ''
+      this.fetchingApiss()
+    },
+    tpsId() {
       this.completed = true
     }
   },
@@ -62,6 +69,9 @@ const el = new Vue({
     },
     urlApiVillages() {
       return `${this.baseApiUrl}/villages/${this.districtId}.json`
+    },
+    urlApiTpss() {
+      return `${this.baseApiUrl}/tpss/${this.villageId}.json`
     },
     fetchProvincesCode() {
       return [
@@ -94,6 +104,14 @@ const el = new Vue({
         '.then(villages => console.log(villages));'
       ].join('\n')
     },
+    fetchTpssCode() {
+      return !this.villageId ? '' : [
+        `<small class="text-fade-50">// ID Desa ${this.selectedVillage.name} = ${this.villageId}</small>`,
+        `fetch(\`<a href="${this.urlApiTpss}" target="_blank">${this.urlApiTpss}</a>\`)`,
+        '.then(response => response.json())',
+        '.then(apiss => console.log(apiss));'
+      ].join('\n')
+    },
     selectedProvince() {
       return this.provinces.find(item => item.id == this.provinceId)
     },
@@ -106,6 +124,9 @@ const el = new Vue({
     selectedVillage() {
       return this.villages.find(item => item.id == this.villageId)
     },
+    selectedTps() {
+      return this.tpss.find(item => item.id == this.tpsId)
+    },
     responseProvinces() {
       return JSON.stringify(this.provinces, null, 2)
     },
@@ -117,6 +138,9 @@ const el = new Vue({
     },
     responseVillages() {
       return JSON.stringify(this.villages, null, 2)
+    },
+    responseTpss() {
+      return JSON.stringify(this.tpss, null, 2)
     },
   },
   created() {
@@ -165,6 +189,17 @@ const el = new Vue({
       const result = await fetch(`api/villages/${this.districtId}.json`)
       this.fetchingVillages = false
       this.villages = await result.json()
+    },
+    async fetchTpss() {
+      if (!this.villageId) {
+        this.tpss = []
+        return
+      }
+
+      this.fetchTpss = true
+      const result = await fetch(`api/tpss/${this.villageId}.json`)
+      this.fetchingTpss = false
+      this.tpss = await result.json()
     }
   }
 })
