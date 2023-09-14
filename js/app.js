@@ -109,7 +109,7 @@ const el = new Vue({
         `<small class="text-fade-50">// ID Desa ${this.selectedVillage.name} = ${this.villageId}</small>`,
         `fetch(\`<a href="${this.urlApiTpss}" target="_blank">${this.urlApiTpss}</a>\`)`,
         '.then(response => response.json())',
-        '.then(apiss => console.log(apiss));'
+        '.then(tpss => console.log(tpss));'
       ].join('\n')
     },
     selectedProvince() {
