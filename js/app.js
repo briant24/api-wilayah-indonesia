@@ -51,7 +51,7 @@ const el = new Vue({
     },
     villageId() {
       this.tpsId = ''
-      this.fetchingApiss()
+      this.fetchTpss()
     },
     tpsId() {
       this.completed = true
@@ -196,7 +196,7 @@ const el = new Vue({
         return
       }
 
-      this.fetchTpss = true
+      this.fetchingTpss = true
       const result = await fetch(`api/tpss/${this.villageId}.json`)
       this.fetchingTpss = false
       this.tpss = await result.json()
